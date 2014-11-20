@@ -1,0 +1,1 @@
+<p>Thank you for your inquiry, we will get back to you shortly.</p>
