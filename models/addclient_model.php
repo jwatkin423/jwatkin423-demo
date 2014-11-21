@@ -4,12 +4,12 @@ class Addclient_model extends CI_Model {
 	public function __construct() {
 		$this->load->database();
 		$this->load->library('session');
-		$accnttype = $this->session->userdata('user_t');
+		
 	}
 
 	public function create_client($comp_name, $comp_address, $comp_address2, $comp_city, $comp_state, $comp_zip, $comp_tel, $comp_cfname, $comp_clname, $comp_mlocs, $user_id)
 	{
-		$accnttype == $this->accnttype;
+		$this->session->userdata('user_t');
 		if($accnttype == "A")
 		{
 			$user_id = $this->session->userdata('user_id');
