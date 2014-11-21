@@ -6,57 +6,55 @@ class Admin extends CI_Controller {
 		
 		// libraries
 		$this->load->library('session');
-		
 
 		// helpers
 		$this->load->helper('url');
 		$this->load->helper(array('form', 'url'));
 		}
 
-	public function index() {
+		public function index() {
 			$user_id = $this->session->userdata('user_id');
 			$compid = $this->session->userdata('company_id');
-			
+				
 			$data['users'] = $user_id;
 			$data['cid'] = $compid;
-			
+				
 			$this->load->view('header/header');
 			$this->load->view('admin/home', $data);
 			$this->load->view('footer/footer');
-	}
-	public function addclient() {
-		$user_id = $this->session->userdata('user_id');
-		$comp_id = $this->session->userdata('comp_id');
-		$data['users'] = $user_id;
-		$data['cid'] = $comp_id;
-		$this->load->view('header/header');
-		$this->load->view('admin/newclient', $data);
-		$this->load->view('footer/footer');
-	}
-	public function add_client() {
+		}
+		public function addclient() {
+			$user_id = $this->session->userdata('user_id');
+			$comp_id = $this->session->userdata('comp_id');
+			$data['users'] = $user_id;
+			$data['cid'] = $comp_id;
+			$this->load->view('header/header');
+			$this->load->view('admin/newclient', $data);
+			$this->load->view('footer/footer');
+		}
+		public function add_client() {
+			$user_id = $this->session->userdata('user_id');
+			$comp_id = $this->session->userdata('comp_id');
+			$comp_name = $this->input->post('comp_name');
+			$comp_address = $this->input->post('comp_address');
+			$comp_address2 = $this->input->post('comp_address2');
+			$comp_city = $this->input->post('comp_city');
+			$comp_state = $this->input->post('comp_state');
+			$comp_zip = $this->input->post('comp_zip'); 
+			$comp_tel = $this->input->post('comp_tel');
+			$comp_cfname = $this->input->post('comp_cfname');
+			$comp_clname = $this->input->post('comp_clname');
+			$comp_mlocs = $this->input->post('comp_mlocs');
 
-		$user_id = $this->session->userdata('user_id');
-		$comp_id = $this->session->userdata('comp_id');
-		$comp_name = $this->input->post('comp_name');
-		$comp_address = $this->input->post('comp_address');
-		$comp_address2 = $this->input->post('comp_address2');
-		$comp_city = $this->input->post('comp_city');
-		$comp_state = $this->input->post('comp_state');
-		$comp_zip = $this->input->post('comp_zip'); 
-		$comp_tel = $this->input->post('comp_tel');
-		$comp_cfname = $this->input->post('comp_cfname');
-		$comp_clname = $this->input->post('comp_clname');
-		$comp_mlocs = $this->input->post('comp_mlocs');
-		
-		$this->load->model('addclient_model');
-		$this->addclient_model->create_client($comp_name, $comp_address, $comp_address2, $comp_city, $comp_state, $comp_zip, $comp_tel, $comp_cfname, $comp_clname, $comp_mlocs, $user_id, $compid);
-		redirect('/itdata/user');
+			$this->load->model('addclient_model');
+			$this->addclient_model->create_client($comp_name, $comp_address, $comp_address2, $comp_city, $comp_state, $comp_zip, $comp_tel, $comp_cfname, $comp_clname, $comp_mlocs, $user_id, $compid);
+			redirect('/itdata/user');
 		}
 		
 		public function delete_client($clientid) {
 			$clientid = $clientid/6111988;
 			$this->load->model('addclient_model');
-			$this->addclient_model->delete_client($clientid);            
+			$this->addclient_model->delete_client($clientid);
 		}
 				  
 		public function update($clientid) {
@@ -144,7 +142,7 @@ class Admin extends CI_Controller {
 			$data['documents'] = $dmnts;
 			$this->load->view('header/header');
 			$this->load->view('admin/showdata', $data);
-			$this->load->view('footer/footer'); 
+			$this->load->view('footer/footer');
 		}
 		public function addmlocation($clientid) {
 			$clientid = $clientid/6111988;
@@ -564,7 +562,7 @@ class Admin extends CI_Controller {
 				echo "Path ".$path."<br />";
 				print_r($file_data);
 				var_dump(base_url());
-				var_dump(is_dir($path)); 
+				var_dump(is_dir($path));
 				var_dump($_SERVER['SCRIPT_FILENAME']); 
 				$errorstring = $this->upload->display_errors();
 				echo "Error uploading files.".$errorstring;
