@@ -549,15 +549,12 @@ class Admin extends CI_Controller {
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
 			
-			i this->upload->do_upload('dfile'))
-			{
+			$this->upload->do_upload('dfile')) {
 				$file_data = $this->upload->data('dfile');
 				print_r($file_data);
 				$fname = $file_data['file_name'];
 				echo "<br />File ". $fname. " was uploaded successfully";
-			}
-			else 
-			{
+			} else {
 				echo "Upload path ";
 				print_r($config);
 				echo "<br />";
