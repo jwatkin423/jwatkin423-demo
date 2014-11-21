@@ -198,13 +198,13 @@ class Admin extends CI_Controller {
 			$this->load->view('footer/footer');
 		}
 		public function cl_servers() {
-			comp_ipaddress = $this->input->post('ipaddress');
-			comp_servername = $this->input->post('servername');
-			comp_stype = $this->input->post('stype');
-			comp_num = $this->input->post('server_num');
-			this->load->model('addclient_model');
-			this->addclient_model->create_server($comp_num, $comp_ipaddress, $comp_servername, $comp_stype);
-			comp_num = $comp_num * 6111988;
+			$comp_ipaddress = $this->input->post('ipaddress');
+			$comp_servername = $this->input->post('servername');
+			$comp_stype = $this->input->post('stype');
+			$comp_num = $this->input->post('server_num');
+			$this->load->model('addclient_model');
+			$this->addclient_model->create_server($comp_num, $comp_ipaddress, $comp_servername, $comp_stype);
+			$comp_num = $comp_num * 6111988;
 			edirect('/itdata/admin/dc/'.$comp_num.'#servers');
 		}
 		public function add_printer($clientid) {
