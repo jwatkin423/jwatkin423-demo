@@ -49,8 +49,7 @@ class Admin extends CI_Controller {
 		$comp_mlocs = $this->input->post('comp_mlocs');
 		
 		$this->load->model('addclient_model');
-		$this->addclient_model->create_client($comp_name, $comp_address, $comp_address2, $comp_city, $comp_state, $comp_zip, 
-			$comp_tel, $comp_cfname, $comp_clname, $comp_mlocs, $user_id, $compid);
+		$this->addclient_model->create_client($comp_name, $comp_address, $comp_address2, $comp_city, $comp_state, $comp_zip, $comp_tel, $comp_cfname, $comp_clname, $comp_mlocs, $user_id, $compid);
 		redirect('/itdata/user');
 		}
 		
@@ -62,7 +61,7 @@ class Admin extends CI_Controller {
 				  
 		public function update($clientid) {
 			$this->load->model('addclient_model');
-			$client =  $this->addclient_model->update_client($clientid);
+			$client = $this->addclient_model->update_client($clientid);
 			$data['clients'] = $client;
 			$this->load->view('header/header');
 			$this->load->view('admin/updateclient', $data);
@@ -88,7 +87,8 @@ class Admin extends CI_Controller {
 		public function dc($clientid) {
 			$clientid = $clientid/6111988;
 			$this->load->model('adminpanel/adminpanel_model');
-			if($this->session->userdata('user_t' !="A")) {
+			if($this->session->userdata('user_t' !="A"))
+			{
 				$this->session->userdata('user_id');
 				$ps = $this->adminpanel_model->get_permset($clientid);
 				$data['permset'] = $ps;
@@ -468,7 +468,7 @@ class Admin extends CI_Controller {
 		}
 		public function cl_asp() {
 			$comp_num = $this->input->post('asp_num');
-			$comp_name = $this->input->post('asp_name');
+			$comp_name =  $this->input->post('asp_name');
 			$comp_url = $this->input->post('asp_address');
 			$comp_un = $this->input->post('asp_username');
 			$comp_pw = $this->input->post('asp_pd');
@@ -538,7 +538,8 @@ class Admin extends CI_Controller {
 			$clientid = $clntd*6111988;
 			$clientpath = "c".$clientid;
 			$path = './uploads/'.$clientpath;
-			if(!file_exists($path)) {
+			if(!file_exists($path))
+			{
 				mkdir($path, 0777);
 			}
 			$config['upload_path'] = $path;
@@ -549,7 +550,7 @@ class Admin extends CI_Controller {
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
 			
-			$this->upload->do_upload('dfile')) {
+			if ($this->upload->do_upload('dfile')) {
 				$file_data = $this->upload->data('dfile');
 				print_r($file_data);
 				$fname = $file_data['file_name'];
